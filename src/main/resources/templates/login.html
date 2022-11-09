@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login form with JavaScript Validation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/public/style.css" />
+  </head>
+  <body>    
+    <div class="wrapper">
+      <div class="logo">
+        <B>ZOO</B> 
+      </div>
+      <div class="form">
+        <h1 class="title text-login">Login to your account</h1>
+        <form action="" id="formvalidate">
+          <div class="input-group">
+            <label class="palceholder text-login" for="userName"
+              >Username</label
+            >
+            <br />
+            <input
+              class="form-control text-login"
+              size="25"
+              name="userName"
+              id="userName"
+              type="text"
+              placeholder=""
+            />
+          </div>
+          <div class="input-group">
+            <label class="palceholder text-login" for="userPassword"
+              >Password</label
+            >
+            <br />
+            <input
+              class="form-control text-login"
+              size="25"
+              name="userPassword"
+              id="userPassword"
+              type="password"
+              placeholder=""
+            />
+          </div>
+          <br>
+          <button class="login-button" type="submit" id="login">
+            Login</button
+          >
+          
+        </form>
+
+       
+          <a href="register.html" class="text-login"
+            >Don't have an account? Create One</a
+          >
+    </div>
+  </body>
+  <script src="../static/public/js/login.js"></script>
+</html>

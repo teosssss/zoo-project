@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login form with JavaScript Validation</title>
+    <link rel="stylesheet" href="../static/public/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="logo">
+        <B>ZOO</B> 
+      </div>
+      <div class="form">
+        <h1 class="title text-login">Register your account</h1>
+        <form action="" id="formvalidate">
+          <div class="input-group">
+            <label class="palceholder text-login" for="name">Name</label>
+            <br />
+            <input
+              class="form-control text-login"
+              size="35"
+              name="name"
+              id="name"
+              type="text"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label class="palceholder text-login" for="surname">Surname</label>
+            <br />
+            <input
+              class="form-control text-login"
+              size="35"
+              name="surname"
+              id="surname"
+              type="text"
+              placeholder=""
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label class="palceholder text-login" for="userName"
+              >Username</label
+            >
+            <br />
+            <input
+              class="form-control text-login"
+              size="35"
+              name="userName"
+              id="userName"
+              type="text"
+              placeholder=""
+              required
+            />
+            <br>
+            <label
+            for="Username"
+            class="text-error"
+            id="alertName"
+          ></label>
+          </div>
+          <div class="input-group">
+            <label class="palceholder text-login" for="userEmail">Email</label>
+            <br />
+            <input
+              class="form-control text-login"
+              size="35"
+              name="userEmail"
+              id="userEmail"
+              type="email"
+              placeholder=""
+              required
+            />
+            <br />
+            <label for="userEmail" class="text-error" id="alertEmail"></label>
+          </div>
+          <div class="input-group">
+            <label class="palceholder text-login" for="userPassword"
+              >Password</label
+            >
+            <br />
+            <input
+              class="form-control text-login"
+              size="35"
+              name="userPassword"
+              id="userPassword"
+              type="password"
+              placeholder=""
+            />
+            <br />
+            <label
+              for="userPassword"
+              class="text-error"
+              id="alertPassword"
+            ></label>
+          </div>
+          <div class="input-group">
+            <label class="palceholder text-login" for="userDate"
+              >Date of birth</label
+            >
+            <br />
+            <input
+              class="form-control text-login"
+              size="5"
+              name="userDate"
+              id="userDate"
+              type="date"
+              placeholder=""
+              min="1920-01-01"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <input
+              class="form-control text-login"
+              size="35"
+              name="condition"
+              id="condition"
+              type="checkbox"
+              required
+            />
+            <label
+              class="palceholder text-login"
+              for="condition"
+              style="margin-bottom: 10px"
+              >Terms and condition</label
+            >
+          </div>
+
+          <button class="login-button" type="submit" id="register">
+            Register
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="../project4/js/register.js"></script>
+</html>

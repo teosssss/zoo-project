@@ -1,0 +1,14 @@
+zoo/model/UserRole.java
+ zoo.model.UserRole
+zoo/MicroblogApplication.java
+ zoo.MicroblogApplication
+zoo/model/Animal.java
+ zoo.model.Animal
+zoo/model/User.java
+ zoo.model.User
+zoo/controllers/MainController.java
+ zoo.controllers.MainController
+zoo/model/Activity.java
+ zoo.model.Activity
+zoo/model/Reservation.java
+ zoo.model.Reservation
