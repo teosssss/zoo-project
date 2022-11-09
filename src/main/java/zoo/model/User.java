@@ -9,13 +9,10 @@ import java.util.List;
 @Entity
 public class User {
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id")
     private List<Reservation> reservations;
 
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
 
     @Column(nullable = false)
     private UserRole role;
@@ -39,6 +36,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -53,6 +54,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public String getEmail() {

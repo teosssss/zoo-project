@@ -1,9 +1,6 @@
 package zoo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Animal {
@@ -11,15 +8,14 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(unique = true, nullable = false, length = 64)
     public String name;
 
+    @Column(nullable = false, length = 64)
     public String species;
 
+    @Column
     public String description;
-
-    public String getSpecies() {
-        return species;
-    }
 
     public String getName() {
         return name;

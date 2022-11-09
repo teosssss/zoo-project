@@ -18,60 +18,16 @@
         </nav>
         <h1 style="padding: 10px 20px;">Activities available:</h1>
         <section class="grid-container">
-            <div class="card">
+            <div class="card" th:each="activity : ${activities}">
                 <a href="reservation.html">
                 <div class="card-container">
-                  <h4><b>Acquapark</b></h4> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p> 
+                  <h4 th:text="${activity.getTitle()}"><b ></b></h4> 
+                  <p th:text="${activities.getDescription()}"></p> 
                   <button>Reserve Tickets</button>
                 </div>
                 </a>
               </div>
-              <div class="card">
-                <a href="reservation.html">
-                <div class="card-container">
-                  <h4><b>Acquapark</b></h4> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p> 
-                  <button>Reserve Tickets</button>
-                </div>
-                </a>
-              </div>
-              <div class="card">
-                <a href="reservation.html">
-                <div class="card-container">
-                  <h4><b>Acquapark</b></h4> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p> 
-                  <button>Reserve Tickets</button>
-                </div>
-                </a>
-              </div>
-              <div class="card">
-                <a href="reservation.html">
-                <div class="card-container">
-                  <h4><b>Acquapark</b></h4> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p> 
-                  <button>Reserve Tickets</button>
-                </div>
-                </a>
-              </div>
-              <div class="card">
-                <a href="reservation.html">
-                <div class="card-container">
-                  <h4><b>Acquapark</b></h4> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p> 
-                  <button>Reserve Tickets</button>
-                </div>
-                </a>
-              </div>
-              <div class="card">
-                <a href="reservation.html">
-                <div class="card-container">
-                  <h4><b>Acquapark</b></h4> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p> 
-                  <button>Reserve Tickets</button>
-                </div>
-                </a>
-              </div>
+              
         </section>
         </body>
 </html>

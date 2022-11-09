@@ -1,3 +1,5 @@
+zoo/model/ScheduledActivity.java
+ zoo.model.ScheduledActivity
 zoo/model/UserRole.java
  zoo.model.UserRole
 zoo/MicroblogApplication.java
