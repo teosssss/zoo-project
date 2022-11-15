@@ -16,16 +16,19 @@
             </ul>
             <button id="login"><a href="login.html">Login</a></button>
         </nav>
+        <h1 style="padding: 10px 20px;">The animals</h1>
         <section class="grid-container">
             <div class="card" th:each="animal : ${animals}">
                 <a href="animal.html">
-                <img src="../static/public/animals/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="Avatar" style="width:100%">
-                <div class="card-container">
-                  <h4 th:text="${animal.getName()}"><b></b></h4> 
-                  <p th:text="${animal.getSpecies()}"></p> 
+                <img src="../static/public/animals/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="Avatar" >
+                <div class="card-container absolute">
+                  <h4 th:text="${animal.getName()}"><b>Mario</b></h4> 
+                  <p th:text="${animal.getSpecies()}">Malesyan Tiger</p> 
                 </div>
                   </a>
             </div>
         </section>
     </body>
 </html>
+
+

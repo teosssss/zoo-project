@@ -16,14 +16,14 @@
             </ul>
             <button id="login"><a href="login.html">Login</a></button>
         </nav>
-        <h1 style="padding: 10px 20px;">Activities available:</h1>
+        <h1 style="padding: 10px 20px;">Activities available</h1>
         <section class="grid-container">
             <div class="card" th:each="activity : ${activities}">
+                <img src="../static/public/animals/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
                 <a href="reservation.html">
-                <div class="card-container">
-                  <h4 th:text="${activity.getTitle()}"><b ></b></h4> 
-                  <p th:text="${activities.getDescription()}"></p> 
-                  <button>Reserve Tickets</button>
+                <div class="card-container absolute">
+                  <h4 th:text="${activity.getTitle()}"><b >Acquapark</b></h4> 
+                  <p th:text="${activities.getDescription()}"> Monday 22</p> 
                 </div>
                 </a>
               </div>
