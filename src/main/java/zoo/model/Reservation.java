@@ -11,6 +11,7 @@ public class Reservation {
     @ManyToOne(optional = false)
     private User user;
     @ManyToOne(optional = false)
+    @JoinTable
     private ScheduledActivity scheduledActivity;
 
     //@Query("SELECT SUM(r.numPlaces) FROM Reservation r WHERE r.scheduledActivity=?1")

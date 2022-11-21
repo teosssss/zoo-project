@@ -32,7 +32,7 @@ public class MainController {
     @GetMapping(path = "/")
     public String mainView(Model model) {
 
-        return "main_view";
+        return "index";
     }
 
     @GetMapping(path = "/catalog")
@@ -94,6 +94,21 @@ public class MainController {
     public String loginForm() {
         return "login";
     }
+
+    @PostMapping(path="/login")
+    public String validateForm(@Valid @ModelAttribute("user") User user,BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "login";
+        }
+        if (userRepository.findByName(user.getName())==null){
+            return "redirect:login?error";
+        }
+
+        return "index";
+    }
+
+
+
 
 
 

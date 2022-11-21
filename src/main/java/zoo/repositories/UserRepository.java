@@ -11,5 +11,6 @@ public interface UserRepository
     User findByEmail(String email);
     User findById(int userId);
     User findByName(String name);
+
 }
 
