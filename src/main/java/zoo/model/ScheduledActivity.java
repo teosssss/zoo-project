@@ -29,6 +29,11 @@ public class ScheduledActivity {
         this.places = places;
     }
 
+
+    public Integer getPlaces() {
+        return places;
+    }
+
     public Integer getPlacesAvailable() {
         return places- reservations.size();
     }
@@ -41,4 +46,22 @@ public class ScheduledActivity {
     public Long getId() {
         return id;
     }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+
 }

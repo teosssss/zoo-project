@@ -28,7 +28,6 @@ public class Activity {
 
 
 
-
     public Long getId() {
         return id;
     }
@@ -37,7 +36,22 @@ public class Activity {
         return description;
     }
 
-    public String getTitle() {
-        return title;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+    public String getTitle(){return title;}
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<ScheduledActivity> getScheduledActivities() {
+        return scheduledActivities;
+    }
+
+    public void setScheduledActivities(List<ScheduledActivity> scheduledActivities) {
+        this.scheduledActivities = scheduledActivities;
+    }
+
 }

@@ -24,6 +24,9 @@ public class Reservation {
         this.placesReserved = placesReserved;
     }
 
+    public Integer getPlacesReserved() {
+        return placesReserved;
+    }
 
 
 
@@ -32,9 +35,6 @@ public class Reservation {
         return user;
     }
 
-    public ScheduledActivity getScheduledActivity() {
-        return scheduledActivity;
-    }
 
     public void setUser(User user) {
         this.user = user;
@@ -48,4 +48,16 @@ public class Reservation {
     public Long getId() {
         return id;
     }
+
+    public void setScheduledActivity(ScheduledActivity scheduledActivity) {
+        this.scheduledActivity = scheduledActivity;
+    }
+
+    public ScheduledActivity getScheduledActivity() {
+        return scheduledActivity;
+    }
+
+
+
+
 }
