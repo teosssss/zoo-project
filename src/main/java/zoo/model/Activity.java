@@ -47,6 +47,9 @@ public class Activity {
 
     public List<ScheduledActivity> getScheduledActivities() {
         return scheduledActivities;
+        
+        
+        
     }
 
     public void setScheduledActivities(List<ScheduledActivity> scheduledActivities) {

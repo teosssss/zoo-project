@@ -39,6 +39,7 @@ public class MainController {
     public String testView(Model model) {
         List<Animal> animals=new ArrayList<>();
         Animal lion=new Animal();
+        
         lion.species="LION";
         lion.name="marco";
         lion.description="lorem sidjosfdiodsnfiodsf";
