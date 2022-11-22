@@ -40,8 +40,6 @@ public class ScheduledActivity {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @Id
     public Long getId() {
         return id;
     }

@@ -68,6 +68,10 @@ public class MainController {
         return "activity";
     }
 
+    @GetMapping(path="/register")
+    public String registerView(Model model){
+        return "register";
+    }
     @PostMapping(path = "/register")
     public String register(@Valid @ModelAttribute("user") User user,
                            BindingResult bindingResult,

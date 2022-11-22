@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../static/public/style.css">
+        <link rel="stylesheet" href="../static/public/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
     </head>
@@ -20,7 +20,7 @@
         <section class="grid-container">
             <div class="card" th:each="animal : ${animals}">
                 <a href="animal.html">
-                <img src="../static/public/animals/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="Avatar" >
+                <img src="../static/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="Avatar" >
                 <div class="card-container absolute">
                   <h4 th:text="${animal.getName()}"><b>Mario</b></h4> 
                   <p th:text="${animal.getSpecies()}">Malesyan Tiger</p> 
