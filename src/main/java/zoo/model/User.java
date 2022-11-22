@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 public class User {
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
     private List<Reservation> reservations;
 
 

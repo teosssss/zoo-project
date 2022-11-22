@@ -13,7 +13,6 @@ public class ScheduledActivity {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
     private List<Reservation> reservations;
 
 

@@ -11,7 +11,6 @@ public class Activity {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
     private List<ScheduledActivity> scheduledActivities;
 
     @Size(max = 64)

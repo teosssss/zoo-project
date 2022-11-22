@@ -9,9 +9,10 @@ public class Reservation {
     private Long id;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name="user_id")
     private User user;
     @ManyToOne(optional = false)
-    @JoinTable
+    @JoinColumn(name="activities_id")
     private ScheduledActivity scheduledActivity;
 
     //@Query("SELECT SUM(r.numPlaces) FROM Reservation r WHERE r.scheduledActivity=?1")
