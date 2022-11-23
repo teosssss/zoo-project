@@ -18,3 +18,5 @@ window.addEventListener("DOMContentLoaded",()=>{
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 })
+
+

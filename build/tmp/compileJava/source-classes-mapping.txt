@@ -1,16 +1,26 @@
-zoo/model/ScheduledActivity.java
- zoo.model.ScheduledActivity
 zoo/model/UserRole.java
  zoo.model.UserRole
-zoo/MicroblogApplication.java
- zoo.MicroblogApplication
+zoo/model/ScheduledActivity.java
+ zoo.model.ScheduledActivity
+zoo/services/UserService.java
+ zoo.services.UserService
+zoo/repositories/UserRepository.java
+ zoo.repositories.UserRepository
 zoo/model/Animal.java
  zoo.model.Animal
 zoo/model/User.java
  zoo.model.User
-zoo/controllers/MainController.java
- zoo.controllers.MainController
+zoo/services/UserServiceImpl.java
+ zoo.services.UserServiceImpl
+zoo/WebSecurityConfig.java
+ zoo.WebSecurityConfig
+zoo/ZooApplication.java
+ zoo.ZooApplication
+zoo/services/UserDetailsServiceImpl.java
+ zoo.services.UserDetailsServiceImpl
 zoo/model/Activity.java
  zoo.model.Activity
 zoo/model/Reservation.java
  zoo.model.Reservation
+zoo/controllers/MainController.java
+ zoo.controllers.MainController

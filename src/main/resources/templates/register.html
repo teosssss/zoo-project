@@ -12,8 +12,7 @@
       </div>
       <div class="form">
         <h1 class="title text-login">Register your account</h1>
-        <form action="" id="formvalidate">
-
+        <form  id="formvalidate" method="post" th:action="@{/register}" th:object="${user}">
           <div class="input-group">
             <label class="palceholder text-login" for="userName"
               >Username</label
@@ -26,6 +25,7 @@
               id="userName"
               type="text"
               placeholder=""
+              th:field="*{name}"
               required
             />
             <br>
@@ -47,6 +47,7 @@
               type="email"
               placeholder=""
               required
+              th:field="*{email}"
             />
             <br />
             <label for="userEmail" class="text-error" id="alertEmail" th:if="${param.duplicate_email}">Email already exist</label>
@@ -63,6 +64,7 @@
               id="userPassword"
               type="password"
               placeholder=""
+              th:field="*{password}"
             />
             <br />
             <label
@@ -72,13 +74,13 @@
             ></label>
             <div class="input-group">
               <label class="palceholder text-login" for="userRepeatPassword"
-              >Password</label
+              >Repeat Password</label
               >
               <br />
               <input
                       class="form-control text-login"
                       size="35"
-                      name="userRepeatPassword"
+                      name="passwordRepeat"
                       id="userRepeatPassword"
                       type="password"
                       placeholder=""

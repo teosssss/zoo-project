@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Login form with JavaScript Validation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/public/style.css" />
+    <link rel="stylesheet" type="text/css" src="../static/public/css/style.css" th:href="@{/css/style.css}" />
   </head>
   <body>    
     <div class="wrapper">
@@ -50,9 +50,10 @@
         </form>
 
        
-          <a href="register.html" class="text-login"
+          <a href="register.html" th:href="@{/register}" class="text-login"
             >Don't have an account? Create One</a
           >
+    </div>
     </div>
   </body>
   <script src="../static/public/js/login.js"></script>

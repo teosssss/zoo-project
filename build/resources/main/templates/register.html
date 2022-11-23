@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <title>Login form with JavaScript Validation</title>
-    <link rel="stylesheet" href="../static/public/style.css" />
+    <link rel="stylesheet" href="../static/public/css/style.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -12,32 +12,7 @@
       </div>
       <div class="form">
         <h1 class="title text-login">Register your account</h1>
-        <form action="" id="formvalidate">
-          <div class="input-group">
-            <label class="palceholder text-login" for="name">Name</label>
-            <br />
-            <input
-              class="form-control text-login"
-              size="35"
-              name="name"
-              id="name"
-              type="text"
-              required
-            />
-          </div>
-          <div class="input-group">
-            <label class="palceholder text-login" for="surname">Surname</label>
-            <br />
-            <input
-              class="form-control text-login"
-              size="35"
-              name="surname"
-              id="surname"
-              type="text"
-              placeholder=""
-              required
-            />
-          </div>
+        <form  id="formvalidate" method="post" th:action="@{/register}" th:object="${user}">
           <div class="input-group">
             <label class="palceholder text-login" for="userName"
               >Username</label
@@ -50,6 +25,7 @@
               id="userName"
               type="text"
               placeholder=""
+              th:field="*{name}"
               required
             />
             <br>
@@ -57,7 +33,8 @@
             for="Username"
             class="text-error"
             id="alertName"
-          ></label>
+            th:if="${param.duplicate_name}"
+          >Username already exist</label>
           </div>
           <div class="input-group">
             <label class="palceholder text-login" for="userEmail">Email</label>
@@ -70,9 +47,10 @@
               type="email"
               placeholder=""
               required
+              th:field="*{email}"
             />
             <br />
-            <label for="userEmail" class="text-error" id="alertEmail"></label>
+            <label for="userEmail" class="text-error" id="alertEmail" th:if="${param.duplicate_email}">Email already exist</label>
           </div>
           <div class="input-group">
             <label class="palceholder text-login" for="userPassword"
@@ -86,6 +64,7 @@
               id="userPassword"
               type="password"
               placeholder=""
+              th:field="*{password}"
             />
             <br />
             <label
@@ -93,23 +72,27 @@
               class="text-error"
               id="alertPassword"
             ></label>
+            <div class="input-group">
+              <label class="palceholder text-login" for="userRepeatPassword"
+              >Repeat Password</label
+              >
+              <br />
+              <input
+                      class="form-control text-login"
+                      size="35"
+                      name="passwordRepeat"
+                      id="userRepeatPassword"
+                      type="password"
+                      placeholder=""
+              />
+              <br />
+              <label
+                      for="userRepeatPassword"
+                      class="text-error"
+                      th:if="${param.passwords}"
+              >different Passwords</label>
           </div>
-          <div class="input-group">
-            <label class="palceholder text-login" for="userDate"
-              >Date of birth</label
-            >
-            <br />
-            <input
-              class="form-control text-login"
-              size="5"
-              name="userDate"
-              id="userDate"
-              type="date"
-              placeholder=""
-              min="1920-01-01"
-              required
-            />
-          </div>
+
           <div class="input-group">
             <input
               class="form-control text-login"
@@ -130,7 +113,7 @@
           <button class="login-button" type="submit" id="register">
             Register
           </button>
-
+          </div>
         </form>
       </div>
     </div>

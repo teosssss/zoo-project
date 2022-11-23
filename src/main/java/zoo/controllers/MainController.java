@@ -24,6 +24,8 @@ public class MainController {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
     private UserRepository userRepository;
 
 
@@ -73,10 +75,11 @@ public class MainController {
     public String registerView(Model model){
         return "register";
     }
+
     @PostMapping(path = "/register")
     public String register(@Valid @ModelAttribute("user") User user,
                            BindingResult bindingResult,
-                           @RequestParam String passwordRepeat) {
+                           @RequestParam(value = "userRepeatPassword") String passwordRepeat) {
         if (bindingResult.hasErrors()) {
             return "register";
         }
