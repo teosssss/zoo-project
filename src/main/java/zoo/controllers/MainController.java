@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import zoo.model.Activity;
 import zoo.model.Animal;
 import zoo.model.User;
+import zoo.model.UserRole;
 import zoo.repositories.UserRepository;
 import zoo.services.UserDetailsServiceImpl;
 import zoo.services.UserService;
@@ -72,14 +73,14 @@ public class MainController {
     }
 
     @GetMapping(path="/register")
-    public String registerView(Model model){
+    public String registerView(Model model,User user){
         return "register";
     }
 
     @PostMapping(path = "/register")
     public String register(@Valid @ModelAttribute("user") User user,
                            BindingResult bindingResult,
-                           @RequestParam(value = "userRepeatPassword") String passwordRepeat) {
+                           @RequestParam String passwordRepeat) {
         if (bindingResult.hasErrors()) {
             return "register";
         }
@@ -90,6 +91,7 @@ public class MainController {
             return "redirect:register?duplicate_name";
         }
         if (user.getPassword().equals(passwordRepeat)) {
+            user.setRole(UserRole.CUSTOMER);
             userService.register(user);
         } else {
             return "redirect:register?passwords";
@@ -99,21 +101,13 @@ public class MainController {
 
 
     @GetMapping(path = "/login")
-    public String loginForm() {
+    public String loginForm(Model model) {
         return "login";
     }
 
-    @PostMapping(path="/login")
-    public String validateForm(@Valid @ModelAttribute("user") User user,BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-        if (userRepository.findByName(user.getName())==null){
-            return "redirect:login?error";
-        }
 
-        return "index";
-    }
+
+
 
 
 
@@ -121,3 +115,10 @@ public class MainController {
 
 
 }
+
+
+
+
+
+
+

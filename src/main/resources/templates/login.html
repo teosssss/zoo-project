@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <title>Login form with JavaScript Validation</title>
@@ -13,8 +13,14 @@
       </div>
       <div class="form">
         <h1 class="title text-login">Login to your account</h1>
-        <form action="" id="formvalidate">
+        <form method="post" id="formvalidate" th:action="@{/login}">
           <div class="input-group">
+            <label
+                    for="userName"
+                    class="text-error"
+                    th:if="${param.error}"
+            >wrong username or password</label>
+            <br>
             <label class="palceholder text-login" for="userName"
               >Username</label
             >
@@ -22,8 +28,8 @@
             <input
               class="form-control text-login"
               size="25"
-              name="userName"
               id="userName"
+              name="username"
               type="text"
               placeholder=""
             />
@@ -36,7 +42,7 @@
             <input
               class="form-control text-login"
               size="25"
-              name="userPassword"
+              name="password"
               id="userPassword"
               type="password"
               placeholder=""

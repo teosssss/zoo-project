@@ -1,4 +1,5 @@
-<html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <link rel="stylesheet" href="../static/public/css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +17,12 @@
                 <li><a href="catalog.html">Catalog</a></li>
                 <li><a href="activity.html">Activity</a></li>
             </ul>
-            <button id="login"><a href="login.html">Login</a></button>
+            <span sec:authentication="name"></span>
+
+            <button sec:authorize="!isAuthenticated()" id="login"><a  th:href="@{/login}">Login</a></button>
+            <form method="post" th:action="@{/logout}">
+            <button sec:authorize="isAuthenticated()" id="logout"><a  th:href="@{/logout}">Logout</a></button>
+            </form>
         </nav>
         <section class="main">
             <img src="../static/public/images/pexels-pixabay-33787.jpg" alt="main">
