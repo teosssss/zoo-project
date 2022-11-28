@@ -11,8 +11,9 @@ public class Reservation {
     @ManyToOne(optional = false)
     @JoinColumn(name="user_id")
     private User user;
-    @ManyToOne(optional = false)
-    @JoinColumn(name="activities_id")
+
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @JoinColumn(name="scheduledActivity_id",nullable = false)
     private ScheduledActivity scheduledActivity;
 
     //@Query("SELECT SUM(r.numPlaces) FROM Reservation r WHERE r.scheduledActivity=?1")

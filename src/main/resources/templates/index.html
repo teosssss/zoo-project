@@ -25,25 +25,25 @@
         <section class="main">
             <img src="../static/public/images/pexels-pixabay-33787.jpg" alt="main">
             <h1>Welcome to the zoo</h1>
-            <button><a href="activity.html">Tickets</a></button>
+            <button><a th:href="@{/activity}">Tickets</a></button>
         </section>
         <section class="container">
             <div class="text-box">
             <i class="bi bi-images"></i>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
-            <button><a href="catalog.html">Catalog</a></button>
+            <button><a th:href="@{/catalog}">Catalog</a></button>
             </div>
             <img src="../static/public/images/pexels-pixabay-34231.jpg" alt="">
             <img src="../static/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="">
             <div class="text-box">
             <i class="bi bi-calendar-event"></i>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
-            <button><a href="activity.html">Events</a></button>
+            <button><a th:href="@{/activity}">Events</a></button>
             </div>
-            <div class="text-box">
+            <div class="text-box" sec:authorize="!isAuthenticated()" >
             <i class="bi bi-box-arrow-in-right"></i>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
-            <button><a href="register.html">Register</a></button>
+            <button><a th:href="@{/register}" >Register</a></button>
             </div>
             <img src="../static/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="">
         </section>

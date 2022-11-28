@@ -56,4 +56,5 @@ public class Activity {
         this.scheduledActivities = scheduledActivities;
     }
 
+
 }

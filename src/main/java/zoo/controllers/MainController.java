@@ -1,17 +1,20 @@
 package zoo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import zoo.model.Activity;
+import org.springframework.web.server.ResponseStatusException;
 import zoo.model.Animal;
+import zoo.model.ScheduledActivity;
 import zoo.model.User;
 import zoo.model.UserRole;
+import zoo.repositories.ScheduledActivityRepository;
 import zoo.repositories.UserRepository;
+import zoo.services.RegisterService;
 import zoo.services.UserDetailsServiceImpl;
-import zoo.services.UserService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -21,7 +24,10 @@ import java.util.List;
 @RequestMapping(path = "/")
 public class MainController {
     @Autowired
-    private UserService userService;
+    private RegisterService<User> userService;
+
+    @Autowired
+    private RegisterService<ScheduledActivity> activityRegisterService;
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -29,7 +35,8 @@ public class MainController {
     @Autowired
     private UserRepository userRepository;
 
-
+    @Autowired
+    private ScheduledActivityRepository activityRepository;
 
 
     @GetMapping(path = "/")
@@ -56,20 +63,42 @@ public class MainController {
         return "catalog";
     }
 
-    @GetMapping(path = "/activities")
+    @GetMapping(path = "/activity")
     public String activityView(Model model) {
-        List<Activity> activities=new ArrayList<>();
-        Activity acquapark=new Activity();
-        acquapark.title="acquapark";
 
-        acquapark.description="lorem sidjosfdiodsnfiodsf";
-        Activity visit=new Activity();
-        visit.title="visit animals";
-        visit.description="lorem sidjosfdiodsnfiodsf";
-        activities.add(acquapark);
-        activities.add(visit);
-        model.addAttribute("activities", activities);
+/*
+        Activity visit = new Activity();
+        visit.title = "visit";
+        visit.description = "lorem sidjosfdiodsnfiodsf";
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        try {
+            date = formatter.parse("31/03/2019 09:01:02");
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ScheduledActivity scheduledVisit = new ScheduledActivity();
+        scheduledVisit.setDate(date);
+        scheduledVisit.setActivity(visit);
+        scheduledVisit.setPlaces(100);
+
+        activityRegisterService.register(scheduledVisit);*/
+
+
+        model.addAttribute("activities", activityRepository.findAll());
         return "activity";
+    }
+
+    @GetMapping(path = "/activity/{id}")
+    public String reservationView(@PathVariable Long id,Model model){
+        ScheduledActivity activity= activityRepository.findById(id);
+        if (activity==null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Message not found insert a valid title");
+        }
+        model.addAttribute("activity",activity);
+        return "reservation";
     }
 
     @GetMapping(path="/register")

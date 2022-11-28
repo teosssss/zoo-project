@@ -20,9 +20,9 @@
     <section class="event">
         <div class="card-single">
             <img src="../static/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
-            <div class="card-container">
-              <h2><b>Acquapark</b></h2> 
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p> 
+            <div class="card-container" >
+              <h2 th:text="${activity.getActivity().getTitle()}"><b></b></h2>
+              <p th:text="${activity.getActivity().getDescription()}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p>
               <h4><b>Select an hour to visit:</b></h4>
               <select name="" id="">
                 <option value="">Select time</option>
