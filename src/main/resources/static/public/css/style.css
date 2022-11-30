@@ -34,6 +34,13 @@ button{
     border-radius: 25px;
 }
 
+select{
+    border-radius: 20px;
+    background-color: transparent;
+    width: 100%;
+    border: solid 2px #92977E;
+}
+
 button:hover{
     background-color:#92977E;
     transition-duration: 0.3s;

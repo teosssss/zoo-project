@@ -46,6 +46,14 @@
             <button><a th:href="@{/register}" >Register</a></button>
             </div>
             <img src="../static/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="">
+
+            <div class="text-box" th:if="${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}">
+                
+                <i class="bi bi-calendar-event"></i>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
+                <button><a th:href="@{/schedule}">Schedule</a></button>
+            </div>
+            <img src="../static/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="">
         </section>
     </body>
     <script src="../static/public/js/scroll.js"> </script>

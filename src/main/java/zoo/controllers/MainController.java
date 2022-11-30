@@ -7,16 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import zoo.model.Animal;
-import zoo.model.ScheduledActivity;
-import zoo.model.User;
-import zoo.model.UserRole;
+import zoo.model.*;
+import zoo.repositories.ActivityRepository;
 import zoo.repositories.ScheduledActivityRepository;
 import zoo.repositories.UserRepository;
 import zoo.services.RegisterService;
 import zoo.services.UserDetailsServiceImpl;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +37,17 @@ public class MainController {
     private UserRepository userRepository;
 
     @Autowired
-    private ScheduledActivityRepository activityRepository;
+    private ScheduledActivityRepository scheduledActivityRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
 
     @GetMapping(path = "/")
-    public String mainView(Model model) {
-
+    public String mainView(Model model, Principal principal) {
+        User user = userRepository.findByEmail(principal.getName());
+        System.out.println(user.getRole());
+        model.addAttribute("user",user);
         return "index";
     }
 
@@ -87,13 +93,13 @@ public class MainController {
         activityRegisterService.register(scheduledVisit);*/
 
 
-        model.addAttribute("activities", activityRepository.findAll());
+        model.addAttribute("activities", scheduledActivityRepository.findAll());
         return "activity";
     }
 
     @GetMapping(path = "/activity/{id}")
     public String reservationView(@PathVariable Long id,Model model){
-        ScheduledActivity activity= activityRepository.findById(id);
+        ScheduledActivity activity= scheduledActivityRepository.findById(id);
         if (activity==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Message not found insert a valid title");
         }
@@ -131,14 +137,56 @@ public class MainController {
 
     @GetMapping(path = "/login")
     public String loginForm(Model model) {
+
         return "login";
+
+    }
+
+
+    @GetMapping(path = "/schedule")
+    public String scheduleView(Model model){
+        model.addAttribute("activities",activityRepository.findAll());
+        return "scheduleActivity";
+    }
+
+
+    @PostMapping(path = "/schedule")
+    public String scheduleActivity(@RequestParam Long activityId, @RequestParam String date
+            , @RequestParam String duration, @RequestParam int places)  {
+        ScheduledActivity scheduledActivity=new ScheduledActivity();
+        Activity activity = activityRepository.findById(activityId);
+
+        scheduledActivity.setActivity(activity);
+
+        try {
+            scheduledActivity.setDate(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(date));
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        scheduledActivity.setDuration(duration);
+        scheduledActivity.setPlaces(places);
+
+        activityRegisterService.register(scheduledActivity);
+
+        return "redirect:schedule?successful";
+    }
+
+    @GetMapping(path = "/create")
+    public String createView(Model model){
+        return "createActivity";
     }
 
 
 
-
-
-
+    @PostMapping(path = "/create")
+    public String createActivity( @RequestParam String title
+            , @RequestParam String description) {
+        Activity activity=new Activity();
+        activity.setTitle(title);
+        activity.setDescription(description);
+        activityRepository.save(activity);
+        return "redirect:create?successful";
+    }
 
 
 

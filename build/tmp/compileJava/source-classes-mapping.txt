@@ -1,30 +1,32 @@
-zoo/services/UserDetailsServiceImpl.java
- zoo.services.UserDetailsServiceImpl
+zoo/WebSecurityConfig.java
+ zoo.WebSecurityConfig
 zoo/model/Animal.java
  zoo.model.Animal
 zoo/model/User.java
  zoo.model.User
-zoo/model/Activity.java
- zoo.model.Activity
 zoo/ZooApplication.java
  zoo.ZooApplication
-zoo/WebSecurityConfig.java
- zoo.WebSecurityConfig
-zoo/repositories/UserRepository.java
- zoo.repositories.UserRepository
+zoo/model/Activity.java
+ zoo.model.Activity
+zoo/repositories/ActivityRepository.java
+ zoo.repositories.ActivityRepository
+zoo/services/UserDetailsServiceImpl.java
+ zoo.services.UserDetailsServiceImpl
 zoo/model/UserRole.java
  zoo.model.UserRole
 zoo/services/RegisterService.java
  zoo.services.RegisterService
 zoo/services/UserRegisterServiceImpl.java
  zoo.services.UserRegisterServiceImpl
+zoo/repositories/UserRepository.java
+ zoo.repositories.UserRepository
 zoo/model/ScheduledActivity.java
  zoo.model.ScheduledActivity
 zoo/services/ActivityRegisterServiceImpl.java
  zoo.services.ActivityRegisterServiceImpl
 zoo/repositories/ScheduledActivityRepository.java
  zoo.repositories.ScheduledActivityRepository
-zoo/controllers/MainController.java
- zoo.controllers.MainController
 zoo/model/Reservation.java
  zoo.model.Reservation
+zoo/controllers/MainController.java
+ zoo.controllers.MainController
