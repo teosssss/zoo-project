@@ -1,7 +1,7 @@
 <html  xmlns:th="http://www.thymeleaf.org"
        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-        <link rel="stylesheet" href="../static/public/css/style.css">
+        <link rel="stylesheet" href="/public/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     </head>
@@ -11,25 +11,25 @@
               <B>ZOO</B> 
             </div>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html">Catalog</a></li>
-                <li><a href="activity.html">Activity</a></li>
-                <li sec:authorize="isAuthenticated()"><a href="myReservation.html">Activity</a></li>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/catalog}">Catalog</a></li>
+                <li><a th:href="@{/activity}">Activity</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/reservation}">Reservation</a></li>
 
             </ul>
             <button sec:authorize="!isAuthenticated()" id="login"><a  th:href="@{/login}">Login</a></button>
-            <form method="post" th:action="@{/logout}">
+            <form method="post" th:action="@{/logout}" class="logout-form">
                 <button sec:authorize="isAuthenticated()" id="logout"><a  th:href="@{/logout}">Logout</a></button>
             </form>
         </nav>
         <h1 style="padding: 10px 20px;">Activities available</h1>
         <section class="grid-container">
             <div class="card" th:each="activity : ${activities}">
-                <img src="../static/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
+                <img src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
                 <a  th:href="@{/activity/{id}(id=${activity.getId()})}">
                 <div class="card-container absolute">
                   <h4 th:text="${activity.getActivity().getTitle()}"><b ></b></h4>
-                  <p th:text="${activity.getActivityStatus()}"></p>
+                  <p th:text="${activity.getDate()}"></p>
                 </div>
                 </a>
               </div>

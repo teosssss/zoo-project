@@ -96,9 +96,14 @@ nav ul li a:hover{
     color: black;
 }
 
-#login{
+#login,#logout{
     margin-left: auto;
     
+}
+
+.logout-form{
+    margin-left: auto;
+    margin-bottom: 0;
 }
 
 .main{
@@ -279,9 +284,10 @@ input{
 
 .card-container p{
     margin-top: 0;
+    margin-bottom: 8px;
 }
 
-.grid-container a{
+.grid-container a,.grid-container p,.grid-container h4{
     color: white;
 }
 
