@@ -19,7 +19,11 @@ public class ScheduledActivity {
     @JoinColumn(name="activity_id",nullable = false)
     private Activity activity;
 
+    @Column(nullable = false)
+    private ActivityType activityType;
 
+    @Column(nullable=false)
+    private ActivityStatus activityStatus;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(nullable = false)
@@ -41,9 +45,6 @@ public class ScheduledActivity {
         return places;
     }
 
-    public Integer getPlacesAvailable() {
-        return places- reservations.size();
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -82,5 +83,21 @@ public class ScheduledActivity {
 
     public String getDuration() {
         return duration;
+    }
+
+    public ActivityType getActivityType() {
+        return activityType;
+    }
+
+    public void setActivityType(ActivityType activityType) {
+        this.activityType = activityType;
+    }
+
+    public ActivityStatus getActivityStatus() {
+        return activityStatus;
+    }
+
+    public void setActivityStatus(ActivityStatus activityStatus) {
+        this.activityStatus = activityStatus;
     }
 }

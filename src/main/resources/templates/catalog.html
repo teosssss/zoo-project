@@ -1,4 +1,5 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <link rel="stylesheet" href="../static/public/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +14,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="catalog.html">Catalog</a></li>
                 <li><a href="activity.html">Activity</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="myReservation.html">Activity</a></li>
+
             </ul>
             <button id="login"><a href="login.html">Login</a></button>
         </nav>

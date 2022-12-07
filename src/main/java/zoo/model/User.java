@@ -8,7 +8,8 @@ import java.util.List;
 
 @Entity
 public class User {
-    @OneToMany(fetch = FetchType.LAZY)
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 
 
@@ -37,6 +38,10 @@ public class User {
 
     public List<Reservation> getReservations() {
         return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public Integer getId() {

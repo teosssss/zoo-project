@@ -1,4 +1,5 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
     <head>
         <link rel="stylesheet" href="../static/public/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,24 +15,40 @@
                 <li><a href="catalog.html">Catalog</a></li>
                 <li><a href="activity.html">Activity</a></li>
             </ul>
-            <button id="login"><a href="login.html">Login</a></button>
+            <button sec:authorize="!isAuthenticated()" id="login"><a  th:href="@{/login}">Login</a></button>
+            <form method="post" th:action="@{/logout}">
+                <button sec:authorize="isAuthenticated()" id="logout"><a  th:href="@{/logout}">Logout</a></button>
+            </form>
         </nav>
-    </body>
+
     <section class="event">
         <div class="card-single">
             <img src="../static/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
             <div class="card-container" >
-              <h2 th:text="${activity.getActivity().getTitle()}"><b></b></h2>
-              <p th:text="${activity.getActivity().getDescription()}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolores nihil, nostrum odit, dolore minus quam a consequatur reiciendis totam quidem veniam optio nobis at nesciunt odio placeat repudiandae voluptatem.</p>
-              <h4><b>Select an hour to visit:</b></h4>
-              <select name="" id="">
-                <option value="">Select time</option>
-                <option value="">9-11</option>
-                <option value="">13-15</option>
-              </select>
-              <br>
-              <button>Reserve Ticket</button>
+
+                <div th:if="${param.successful}"
+                >Activity successfully scheduled</div>
+                <div th:if="${param.failed}"
+                >Book less tickets</div>
+                  <h2 th:text="${activity.getActivity().getTitle()}"><b></b></h2>
+                  <p th:text="${activity.getActivity().getDescription()}"></p>
+                    <p>Date:</p>
+                    <p th:text="${activity.getDate()}"></p>
+                    <p>Duration:</p>
+                    <p th:text="${activity.getDuration()}"></p>
+                  <br>
+                <form th:if="${activity.getActivityStatus().name()=='AVAILABLE'}" action="" method="post" th:action="@{/activity/{id}(id=${activity.getId()})}">
+
+                <label  for="places">Select places</label>
+                    <input type="number" id="places" name="places" required>
+
+                    <button type="submit">Reserve Ticket</button>
+
+                </form>
+                <div th:if="${activity.getActivityStatus().name()=='FULL'}"
+                >Activity is full</div>
             </div>
           </div>
     </section>
+    </body>
 </html>

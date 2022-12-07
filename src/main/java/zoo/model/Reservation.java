@@ -2,13 +2,14 @@ package zoo.model;
 
 import javax.persistence.*;
 
+
 @Entity
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private User user;
 
@@ -16,22 +17,17 @@ public class Reservation {
     @JoinColumn(name="scheduledActivity_id",nullable = false)
     private ScheduledActivity scheduledActivity;
 
-    //@Query("SELECT SUM(r.numPlaces) FROM Reservation r WHERE r.scheduledActivity=?1")
-    //Integer sumReservedPlaces(ScheduledActivity scheduledActivity);
 
-    @Column(nullable = false)
-    private Integer placesReserved;
+    @Column(nullable=false)
+    private int numPlaces;
 
-    public void setPlacesReserved(Integer placesReserved) {
-        this.placesReserved = placesReserved;
+    public void setNumPlaces(int numPlaces) {
+        this.numPlaces = numPlaces;
     }
 
-    public Integer getPlacesReserved() {
-        return placesReserved;
+    public int getNumPlaces() {
+        return numPlaces;
     }
-
-
-
 
     public User getUser() {
         return user;
@@ -58,7 +54,6 @@ public class Reservation {
     public ScheduledActivity getScheduledActivity() {
         return scheduledActivity;
     }
-
 
 
 

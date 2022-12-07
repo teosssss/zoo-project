@@ -14,6 +14,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="catalog.html">Catalog</a></li>
                 <li><a href="activity.html">Activity</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="myReservation.html">Activity</a></li>
+
             </ul>
             <button sec:authorize="!isAuthenticated()" id="login"><a  th:href="@{/login}">Login</a></button>
             <form method="post" th:action="@{/logout}">
@@ -24,10 +26,10 @@
         <section class="grid-container">
             <div class="card" th:each="activity : ${activities}">
                 <img src="../static/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
-                <a th:href="@{/activity/{id}(id=${activity.getId()})}">
+                <a  th:href="@{/activity/{id}(id=${activity.getId()})}">
                 <div class="card-container absolute">
                   <h4 th:text="${activity.getActivity().getTitle()}"><b ></b></h4>
-                  <p th:text="${activity.getActivity().getDescription()}"></p>
+                  <p th:text="${activity.getActivityStatus()}"></p>
                 </div>
                 </a>
               </div>

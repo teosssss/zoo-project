@@ -31,6 +31,9 @@ public class MainController {
     private RegisterService<ScheduledActivity> activityRegisterService;
 
     @Autowired
+    private RegisterService<Reservation> reservationRegisterService;
+
+    @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
@@ -45,9 +48,13 @@ public class MainController {
 
     @GetMapping(path = "/")
     public String mainView(Model model, Principal principal) {
-        User user = userRepository.findByEmail(principal.getName());
-        System.out.println(user.getRole());
-        model.addAttribute("user",user);
+        if (principal!=null) {
+            User user = userRepository.findByEmail(principal.getName());
+
+            model.addAttribute("user", user);
+        }
+        List<ScheduledActivity> mainScheduledActivities=scheduledActivityRepository.findMainActivities();
+        model.addAttribute("activities",mainScheduledActivities);
         return "index";
     }
 
@@ -71,41 +78,11 @@ public class MainController {
 
     @GetMapping(path = "/activity")
     public String activityView(Model model) {
-
-/*
-        Activity visit = new Activity();
-        visit.title = "visit";
-        visit.description = "lorem sidjosfdiodsnfiodsf";
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        try {
-            date = formatter.parse("31/03/2019 09:01:02");
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        ScheduledActivity scheduledVisit = new ScheduledActivity();
-        scheduledVisit.setDate(date);
-        scheduledVisit.setActivity(visit);
-        scheduledVisit.setPlaces(100);
-
-        activityRegisterService.register(scheduledVisit);*/
-
-
         model.addAttribute("activities", scheduledActivityRepository.findAll());
         return "activity";
     }
 
-    @GetMapping(path = "/activity/{id}")
-    public String reservationView(@PathVariable Long id,Model model){
-        ScheduledActivity activity= scheduledActivityRepository.findById(id);
-        if (activity==null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Message not found insert a valid title");
-        }
-        model.addAttribute("activity",activity);
-        return "reservation";
-    }
+
 
     @GetMapping(path="/register")
     public String registerView(Model model,User user){
@@ -152,7 +129,7 @@ public class MainController {
 
     @PostMapping(path = "/schedule")
     public String scheduleActivity(@RequestParam Long activityId, @RequestParam String date
-            , @RequestParam String duration, @RequestParam int places)  {
+            , @RequestParam String duration, @RequestParam int places,@RequestParam(defaultValue = "false") boolean checkbox)  {
         ScheduledActivity scheduledActivity=new ScheduledActivity();
         Activity activity = activityRepository.findById(activityId);
 
@@ -165,6 +142,18 @@ public class MainController {
         }
         scheduledActivity.setDuration(duration);
         scheduledActivity.setPlaces(places);
+
+        if (checkbox){
+            scheduledActivity.setActivityType(ActivityType.MAIN);
+        } else {
+            scheduledActivity.setActivityType(ActivityType.SECONDARY);
+
+        }
+
+        scheduledActivity.setActivityStatus(ActivityStatus.AVAILABLE);
+
+        System.out.println(scheduledActivity.getActivityType());
+
 
         activityRegisterService.register(scheduledActivity);
 
@@ -188,6 +177,51 @@ public class MainController {
         return "redirect:create?successful";
     }
 
+    @GetMapping(path = "/activity/{id}")
+    public String reservationView(@PathVariable Long id,Model model){
+        ScheduledActivity activity= scheduledActivityRepository.findById(id);
+        if (activity==null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found insert a valid title");
+        }
+        model.addAttribute("activity",activity);
+        return "reservation";
+    }
+
+
+    @PostMapping(path = "/activity/{id}")
+    public String reserveActivity(@PathVariable String id,@RequestParam int places,Principal principal){
+        Reservation reservation=new Reservation();
+
+        ScheduledActivity activity= scheduledActivityRepository.findById(Long.valueOf(id));
+        User user=userRepository.findByEmail(principal.getName());
+        reservation.setScheduledActivity(activity);
+        reservation.setNumPlaces(places);
+        reservation.setUser(user);
+        try {
+            reservationRegisterService.register(reservation);
+        } catch(Exception e) {
+            return "redirect:{id}?failed";
+        }
+
+        List<Reservation> reservations=new ArrayList<>(user.getReservations());
+        reservations.add(reservation);
+        user.setReservations(reservations);
+        userRepository.save(user);
+
+        return "redirect:/reservation";
+
+
+
+    }
+
+    @GetMapping(path="/reservation")
+    public String reservationView(Principal principal,Model model){
+        User user=userRepository.findByEmail(principal.getName());
+        System.err.println(user);
+        System.err.println(user.getReservations());
+        model.addAttribute("reservations",user.getReservations());
+        return "myReservation";
+    }
 
 
 
