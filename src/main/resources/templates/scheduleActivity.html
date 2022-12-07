@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/public/css/style.css">
+
+  </head>
+  <body>    
+    <div class="wrapper">
+      <div class="logo">
+        <B>ZOO</B> 
+      </div>
+      <div class="form">
+        <h1 class="title text-login">Schedule an activity</h1>
+        <div th:if="${param.successful}"
+        >Activity successfully scheduled</div>
+        <form method="post" id="formvalidate" th:action="@{/schedule}"  >
+            <label for="activity">Select an activity</label>
+            <select name="activityId" id="activity" >
+              <option th:value="${activity.getId()}" th:each="activity : ${activities}" th:text="${activity.getTitle()}"></option>
+              </select>
+            <br>
+            <br>
+            <label>
+                <input type="datetime-local"  name="date">
+            </label>
+
+            <br>
+            <br>
+
+            <label for="duration" >Select duration:</label>
+            <select  id="duration" name="duration">
+              <option value="30">30</option>
+              <option value="60">60</option>
+              <option value="90">90</option>
+              <option value="120">120</option>
+            </select>
+
+            <br>
+            <br>
+
+            <label for="places">places</label>
+                <input type="number"  name="places" id="places">
+
+
+            <br>
+            <br>
+
+            <label for="checkbox">Display in main page
+                <input type="checkbox" name="checkbox" id="checkbox">
+            </label>
+
+            <button class="login-button" type="submit" id="login">
+            Schedule</button
+          >
+
+        </form>
+
+
+    </div>
+    </div>
+  </body>
+  <script src="../static/public/js/login.js"></script>
+</html>
