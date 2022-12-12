@@ -27,7 +27,7 @@
                 <img src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
                 <div class="card-container absolute">
                   <h4 th:text="${reservation.getScheduledActivity().getActivity().getTitle()}"><b ></b></h4>
-                    <p th:text="${reservation.getScheduledActivity().getDate()}"></p>
+                    <p th:text="${reservation.getScheduledActivity().getDate()}" ></p>
                     <p th:text="${reservation.getNumPlaces()}+' places reserved'"></p>
                 </div>
               </div>

@@ -24,8 +24,8 @@
         <h1 style="padding: 10px 20px;">The animals</h1>
         <section class="grid-container">
             <div class="card" th:each="animal : ${animals}">
-                <a href="animal.html">
-                <img src="../static/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="Avatar" >
+                <a th:href="@{/animal/{id}(id=${animal.getId()})}">
+                <img th:src="'/public/images/'+${animal.getName()}+'-'+${animal.getId()}+'.jpg'" alt="Avatar" >
                 <div class="card-container absolute">
                   <h4 th:text="${animal.getName()}"><b>Mario</b></h4> 
                   <p th:text="${animal.getSpecies()}">Malesyan Tiger</p> 

@@ -1,40 +1,42 @@
-zoo/services/UserDetailsServiceImpl.java
- zoo.services.UserDetailsServiceImpl
-zoo/model/Animal.java
- zoo.model.Animal
-zoo/model/User.java
- zoo.model.User
-zoo/repositories/UserRepository.java
- zoo.repositories.UserRepository
-zoo/services/UserRegisterService.java
- zoo.services.UserRegisterService
-zoo/ZooApplication.java
- zoo.ZooApplication
-zoo/services/RegisterService.java
- zoo.services.RegisterService
-zoo/model/Activity.java
- zoo.model.Activity
-zoo/model/UserRole.java
- zoo.model.UserRole
-zoo/repositories/ActivityRepository.java
- zoo.repositories.ActivityRepository
 zoo/WebSecurityConfig.java
  zoo.WebSecurityConfig
 zoo/model/ActivityType.java
  zoo.model.ActivityType
+zoo/model/Animal.java
+ zoo.model.Animal
+zoo/services/UserDetailsServiceImpl.java
+ zoo.services.UserDetailsServiceImpl
+zoo/model/User.java
+ zoo.model.User
+zoo/services/UserRegisterService.java
+ zoo.services.UserRegisterService
+zoo/ZooApplication.java
+ zoo.ZooApplication
+zoo/repositories/UserRepository.java
+ zoo.repositories.UserRepository
+zoo/model/ActivityStatus.java
+ zoo.model.ActivityStatus
+zoo/model/Activity.java
+ zoo.model.Activity
+zoo/services/RegisterService.java
+ zoo.services.RegisterService
+zoo/repositories/ActivityRepository.java
+ zoo.repositories.ActivityRepository
+zoo/model/UserRole.java
+ zoo.model.UserRole
 zoo/model/ScheduledActivity.java
  zoo.model.ScheduledActivity
-zoo/model/Reservation.java
- zoo.model.Reservation
+zoo/services/ReservationRegisterService.java
+ zoo.services.ReservationRegisterService
 zoo/services/ActivityRegisterService.java
  zoo.services.ActivityRegisterService
 zoo/repositories/ScheduledActivityRepository.java
  zoo.repositories.ScheduledActivityRepository
-zoo/controllers/MainController.java
- zoo.controllers.MainController
+zoo/model/Reservation.java
+ zoo.model.Reservation
 zoo/repositories/ReservationRepository.java
  zoo.repositories.ReservationRepository
-zoo/model/ActivityStatus.java
- zoo.model.ActivityStatus
-zoo/services/ReservationRegisterService.java
- zoo.services.ReservationRegisterService
+zoo/controllers/MainController.java
+ zoo.controllers.MainController
+zoo/repositories/AnimalRepository.java
+ zoo.repositories.AnimalRepository

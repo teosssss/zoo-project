@@ -26,37 +26,37 @@
             </form>
         </nav>
         <section class="main">
-            <img src="/public/images/pexels-pixabay-33787.jpg" alt="main">
+            <img src="/public/images/monkey-2.jpg" alt="main">
             <h1>Welcome to the zoo</h1>
             <button><a th:href="@{/activity}">Tickets</a></button>
         </section>
         <section class="container">
             <div class="text-box">
             <i class="bi bi-images"></i>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
+            <p>Watch our catalog to see our beautiful animals we have in the zoo!</p>
             <button><a th:href="@{/catalog}">Catalog</a></button>
             </div>
-            <img src="/public/images/pexels-pixabay-34231.jpg" alt="">
-            <img src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="">
+            <img src="/public/images/deer-3.jpg" alt="">
+            <img src="/public/images/flamingo-5.jpg" alt="">
             <div class="text-box">
             <i class="bi bi-calendar-event"></i>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
+            <p>Check our scheduled activities and events we have in the zoo, reserve the activities and have fun! </p>
             <button><a th:href="@{/activity}">Events</a></button>
             </div>
             <div class="text-box" sec:authorize="!isAuthenticated()" >
             <i class="bi bi-box-arrow-in-right"></i>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
+            <p>Register to see the animals, reserve places for events and much more!</p>
             <button><a th:href="@{/register}" >Register</a></button>
             </div>
-            <img sec:authorize="!isAuthenticated()" src="/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="">
+            <img sec:authorize="!isAuthenticated()" src="/public/images/giraffe-7.jpg" alt="">
 
             <div class="text-box" th:if="${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}">
                 
                 <i class="bi bi-calendar-event"></i>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, ad ducimus. Repudiandae voluptatem tempora obcaecati dignissimos suscipit delectus rerum, ex totam dolorum, fugiat blanditiis aut nesciunt sit maiores. Perspiciatis, a.</p>
+                <p>Schedule an activity if you are a manager</p>
                 <button><a th:href="@{/schedule}">Schedule</a></button>
             </div>
-            <img src="/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" th:if="${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}" alt="">
+            <img src="/public/images/lion-6.jpg" th:if="${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}" alt="">
         </section>
         <h1 th:if="${!activities.isEmpty()}" style="padding: 10px 20px;" class="text-box">Main activies</h1>
         <section class="grid-container">

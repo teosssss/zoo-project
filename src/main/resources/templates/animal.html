@@ -24,11 +24,11 @@
         </nav>
         <section class="animal">
              <div class="card-single">
-                <img src="public/images/pexels-pixabay-247502.jpg" alt="Avatar" style="width:100%">
+                <img th:src="'/public/images/'+${animal.getName()}+'-'+${animal.getId()}+'.jpg'" alt="Avatar" style="max-width:100%">
                 <div class="card-container">
-                <h4><b>Theo</b></h4> 
-                <h1><b>animal</b></h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero consequuntur fuga tenetur autem cum temporibus id exercitationem reprehenderit. Veritatis nisi non sunt maxime id sit porro, dolore exercitationem illo amet?</p>
+                    <h2 th:text="${animal.getName()}"><b></b></h2>
+                    <p th:text="${animal.getSpecies()}"></p>
+                    <p th:text="${animal.getDescription()}"></p>
                 </div>
                 </div>
             

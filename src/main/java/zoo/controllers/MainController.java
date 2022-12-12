@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import zoo.model.*;
 import zoo.repositories.ActivityRepository;
+import zoo.repositories.AnimalRepository;
 import zoo.repositories.ScheduledActivityRepository;
 import zoo.repositories.UserRepository;
 import zoo.services.RegisterService;
@@ -20,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/")
@@ -45,6 +47,9 @@ public class MainController {
     @Autowired
     private ActivityRepository activityRepository;
 
+    @Autowired
+    private AnimalRepository animalRepository;
+
 
     @GetMapping(path = "/")
     public String mainView(Model model, Principal principal) {
@@ -60,20 +65,19 @@ public class MainController {
 
     @GetMapping(path = "/catalog")
     public String testView(Model model) {
-        List<Animal> animals=new ArrayList<>();
-        Animal lion=new Animal();
-        
-        lion.species="LION";
-        lion.name="marco";
-        lion.description="lorem sidjosfdiodsnfiodsf";
-        Animal tiger=new Animal();
-        tiger.species="LION";
-        tiger.name="marco";
-        tiger.description="lorem sidjosfdiodsnfiodsf";
-        animals.add(lion);
-        animals.add(tiger);
-        model.addAttribute("animals", animals);
+        model.addAttribute("animals", animalRepository.findAll());
         return "catalog";
+
+    }
+
+    @GetMapping(path = "/animal/{id}")
+    public String AnimalView(@PathVariable Integer id,Model model){
+        Optional<Animal> animal= animalRepository.findById(id);
+        if (!animal.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found insert a valid title");
+        }
+        model.addAttribute("animal",animal.get());
+        return "animal";
     }
 
     @GetMapping(path = "/activity")
