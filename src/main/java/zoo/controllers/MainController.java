@@ -129,7 +129,7 @@ public class MainController {
 
     @PostMapping(path = "/schedule")
     public String scheduleActivity(@RequestParam Long activityId, @RequestParam String date
-            , @RequestParam String duration, @RequestParam int places,@RequestParam(defaultValue = "false") boolean checkbox)  {
+            , @RequestParam Integer duration, @RequestParam int places,@RequestParam(defaultValue = "false") boolean checkbox)  {
         ScheduledActivity scheduledActivity=new ScheduledActivity();
         Activity activity = activityRepository.findById(activityId);
 
@@ -140,6 +140,9 @@ public class MainController {
         } catch(ParseException e){
             e.printStackTrace();
         }
+
+
+
         scheduledActivity.setDuration(duration);
         scheduledActivity.setPlaces(places);
 
@@ -152,7 +155,6 @@ public class MainController {
 
         scheduledActivity.setActivityStatus(ActivityStatus.AVAILABLE);
 
-        System.out.println(scheduledActivity.getActivityType());
 
 
         activityRegisterService.register(scheduledActivity);

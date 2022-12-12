@@ -3,6 +3,7 @@ package zoo.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class ScheduledActivity {
     private Date date;
 
     @Column(nullable = false)
-    private String duration;
+    private Integer duration;
 
     @Column(nullable = false)
     private Integer places;
@@ -77,11 +78,11 @@ public class ScheduledActivity {
         this.activity = activity;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
-    public String getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 

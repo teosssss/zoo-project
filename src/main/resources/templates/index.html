@@ -19,9 +19,10 @@
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/reservation}">Reservation</a></li>
 
             </ul>
-            <button sec:authorize="!isAuthenticated()" id="login"><a  th:href="@{/login}">Login</a></button>
-            <form method="post" th:action="@{/logout}" class="logout-form">
-            <button sec:authorize="isAuthenticated()" id="logout"><a  th:href="@{/logout}">Logout</a></button>
+
+            <button  sec:authorize="!isAuthenticated()" id="login"><a  th:href="@{/login}">Login</a></button>
+            <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}" class="logout-form">
+            <button  id="logout"><a  th:href="@{/logout}">Logout</a></button>
             </form>
         </nav>
         <section class="main">
@@ -57,7 +58,7 @@
             </div>
             <img src="/public/images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" th:if="${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}" alt="">
         </section>
-        <h1 style="padding: 10px 20px;" class="text-box">Main activies</h1>
+        <h1 th:if="${!activities.isEmpty()}" style="padding: 10px 20px;" class="text-box">Main activies</h1>
         <section class="grid-container">
             <div class="card" th:each="activity : ${activities}">
                 <img src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">

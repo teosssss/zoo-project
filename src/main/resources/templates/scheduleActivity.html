@@ -24,7 +24,7 @@
             <br>
             <br>
             <label>
-                <input type="datetime-local"  name="date">
+                <input type="datetime-local" min="2022-12-12T00:00" name="date">
             </label>
 
             <br>
@@ -42,7 +42,7 @@
             <br>
 
             <label for="places">places</label>
-                <input type="number"  name="places" id="places">
+            <input type="number"  name="places" id="places">
 
 
             <br>
@@ -57,10 +57,11 @@
           >
 
         </form>
-
+          <a th:href="@{/create}">Create a new activity</a>
 
     </div>
     </div>
   </body>
-  <script src="../static/public/js/login.js"></script>
+  <script src="../static/public/js/date.js"></script>
+
 </html>

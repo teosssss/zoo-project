@@ -37,10 +37,10 @@
 
                     <p th:text="'Date: '+${activity.getDate()}"></p>
 
-                    <p th:text="'Duration: '+${activity.getDuration()}"></p>
+                    <p th:text="'Duration: '+${activity.getDuration()}+' minutes'"></p>
                 <form th:if="${activity.getActivityStatus().name()=='AVAILABLE'}" action="" method="post" th:action="@{/activity/{id}(id=${activity.getId()})}">
 
-                <label  for="places">Select places</label>
+                <label  for="places">Select places:</label>
                     <br>
                     <input type="number" id="places" name="places" required>
 
