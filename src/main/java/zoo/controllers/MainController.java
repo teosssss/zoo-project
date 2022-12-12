@@ -184,13 +184,37 @@ public class MainController {
     }
 
     @GetMapping(path = "/activity/{id}")
-    public String reservationView(@PathVariable Long id,Model model){
+    public String reservationView(@PathVariable Long id,Model model,Principal principal){
         ScheduledActivity activity= scheduledActivityRepository.findById(id);
         if (activity==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found insert a valid title");
         }
         model.addAttribute("activity",activity);
+
+        if (principal!=null) {
+            User user = userRepository.findByEmail(principal.getName());
+
+            model.addAttribute("user", user);
+        }
         return "reservation";
+    }
+
+    @PostMapping(path = "/setSecondary/activity/{id}")
+    public String setSecondary(@PathVariable Long id,Model model){
+        ScheduledActivity activity= scheduledActivityRepository.findById(id);
+        activity.setActivityType(ActivityType.SECONDARY);
+        scheduledActivityRepository.save(activity);
+        return "redirect:/reservation";
+    }
+
+
+    @PostMapping(path = "/setMain/activity/{id}")
+    public String setMain(@PathVariable Long id,Model model){
+        ScheduledActivity activity= scheduledActivityRepository.findById(id);
+        activity.setActivityType(ActivityType.MAIN);
+        scheduledActivityRepository.save(activity);
+
+        return "redirect:/reservation";
     }
 
 
@@ -226,6 +250,9 @@ public class MainController {
         System.err.println(user);
         System.err.println(user.getReservations());
         model.addAttribute("reservations",user.getReservations());
+
+
+
         return "myReservation";
     }
 

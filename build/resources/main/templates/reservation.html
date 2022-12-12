@@ -38,6 +38,18 @@
                     <p th:text="'Date: '+${activity.getDate()}"></p>
 
                     <p th:text="'Duration: '+${activity.getDuration()}+' minutes'"></p>
+                    <form th:if="${activity.getActivityType().name()=='MAIN'} and ${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}"
+                          th:action="@{/setSecondary/activity/{id}(id=${activity.getId()})}" method="post"
+                          >
+                        <input type="submit" value="Set to secondary">
+                    </form>
+                    <form th:if="${activity.getActivityType().name()=='SECONDARY'} and ${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}"
+                          th:action="@{/setMain/activity/{id}(id=${activity.getId()})}" method="post">
+                        <input type="submit" value="Set to main">
+                    </form>
+
+
+
                 <form th:if="${activity.getActivityStatus().name()=='AVAILABLE'}" action="" method="post" th:action="@{/activity/{id}(id=${activity.getId()})}">
 
                 <label  for="places">Select places:</label>

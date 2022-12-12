@@ -36,7 +36,7 @@ zoo/model/Reservation.java
  zoo.model.Reservation
 zoo/repositories/ReservationRepository.java
  zoo.repositories.ReservationRepository
-zoo/controllers/MainController.java
- zoo.controllers.MainController
 zoo/repositories/AnimalRepository.java
  zoo.repositories.AnimalRepository
+zoo/controllers/MainController.java
+ zoo.controllers.MainController
