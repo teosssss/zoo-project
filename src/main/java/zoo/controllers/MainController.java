@@ -20,6 +20,7 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,7 +82,22 @@ public class MainController {
     }
 
     @GetMapping(path = "/activity")
-    public String activityView(Model model,Principal principal) {
+    public String activityView(Model model,Principal principal) throws ParseException {
+        Iterable<ScheduledActivity> scheduledActivities=scheduledActivityRepository.findAll();
+        Date today = new Date();
+
+
+        for (ScheduledActivity scheduledActivity : scheduledActivities) {
+            if (scheduledActivity.getDate().before(today)){
+                scheduledActivity.setActivityStatus(ActivityStatus.EXPIRED);
+                activityRegisterService.register(scheduledActivity);
+
+            };
+        }
+
+
+
+
         model.addAttribute("activities", scheduledActivityRepository.findAll());
 
         if (principal!=null) {
@@ -210,7 +226,7 @@ public class MainController {
         ScheduledActivity activity= scheduledActivityRepository.findById(id);
         activity.setActivityType(ActivityType.SECONDARY);
         scheduledActivityRepository.save(activity);
-        return "redirect:/reservation";
+        return "redirect:/";
     }
 
 
@@ -220,7 +236,7 @@ public class MainController {
         activity.setActivityType(ActivityType.MAIN);
         scheduledActivityRepository.save(activity);
 
-        return "redirect:/reservation";
+        return "redirect:/";
     }
 
 

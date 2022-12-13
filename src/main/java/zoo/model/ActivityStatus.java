@@ -1,5 +1,5 @@
 package zoo.model;
 
 public enum ActivityStatus {
-    AVAILABLE,FULL
+    AVAILABLE,FULL,EXPIRED
 }

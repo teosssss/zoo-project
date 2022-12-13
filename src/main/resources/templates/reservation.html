@@ -53,6 +53,8 @@
                 </form>
                 <div th:if="${activity.getActivityStatus().name()=='FULL'}"
                 >Activity is full</div>
+                <div th:if="${activity.getActivityStatus().name()=='EXPIRED'}"
+                >Activity is expired</div>
             </div>
           </div>
     </section>
