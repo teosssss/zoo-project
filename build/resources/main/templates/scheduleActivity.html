@@ -10,7 +10,7 @@
   <body>    
     <div class="wrapper">
       <div class="logo">
-        <B>ZOO</B> 
+        <a th:href="@{/}"><B>ZOO</B> </a>
       </div>
       <div class="form">
         <h1 class="title text-login">Schedule an activity</h1>
@@ -48,13 +48,16 @@
             <br>
             <br>
 
-            <label for="checkbox">Display in main page
-                <input type="checkbox" name="checkbox" id="checkbox">
+            <label for="checkbox">
+                <input type="checkbox" name="checkbox" id="checkbox">Display in main page
             </label>
+            <br><br>
 
             <button class="login-button" type="submit" id="login">
             Schedule</button
           >
+
+            <br><br>
 
         </form>
           <a th:href="@{/create}">Create a new activity</a>

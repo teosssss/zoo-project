@@ -81,8 +81,14 @@ public class MainController {
     }
 
     @GetMapping(path = "/activity")
-    public String activityView(Model model) {
+    public String activityView(Model model,Principal principal) {
         model.addAttribute("activities", scheduledActivityRepository.findAll());
+
+        if (principal!=null) {
+            User user = userRepository.findByEmail(principal.getName());
+
+            model.addAttribute("user", user);
+        }
         return "activity";
     }
 

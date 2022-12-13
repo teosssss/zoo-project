@@ -30,6 +30,16 @@
                 <div class="card-container absolute">
                   <h4 th:text="${activity.getActivity().getTitle()}"><b ></b></h4>
                   <p th:text="${activity.getDate()}"></p>
+                    <form th:if="${activity.getActivityType().name()=='MAIN'} and ${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}"
+                          th:action="@{/setSecondary/activity/{id}(id=${activity.getId()})}" method="post"
+                    >
+                        <input type="submit" value="Set to secondary">
+                    </form>
+                    <form th:if="${activity.getActivityType().name()=='SECONDARY'} and ${user!=null && user.getRole() == T(zoo.model.UserRole).MANAGER}"
+                          th:action="@{/setMain/activity/{id}(id=${activity.getId()})}" method="post"
+                    >
+                        <input type="submit" value="Set to main">
+                    </form>
                 </div>
                 </a>
               </div>
