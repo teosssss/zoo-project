@@ -24,9 +24,9 @@
         </nav>
         <h1 style="padding: 10px 20px;">Activities available</h1>
         <section class="grid-container">
-            <div class="card" th:each="activity : ${activities}">
+            <div th:if="${activity.getActivityStatus().name()!='EXPIRED'}" class="card" th:each="activity : ${activities}">
                 <img th:if="${activity.getActivityStatus().name()=='AVAILABLE'}" src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
-                <img th:if="${activity.getActivityStatus().name()!='AVAILABLE'}" src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash-modified.jpg" alt="Avatar" style="width:100%">
+                <img th:if="${activity.getActivityStatus().name()=='FULL'}" src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash-modified.jpg" alt="Avatar" style="width:100%">
                 <a th:href="@{/activity/{id}(id=${activity.getId()})}">
                 <div class="card-container absolute">
                   <h4 th:text="${activity.getActivity().getTitle()}"><b ></b></h4>
