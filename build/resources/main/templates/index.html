@@ -60,7 +60,7 @@
         </section>
         <h1 th:if="${!activities.isEmpty()}" style="padding: 10px 20px;" class="text-box">Main activies</h1>
         <section class="grid-container">
-            <div class="card" th:each="activity : ${activities}">
+            <div th:if="${activity.getActivityStatus().name()!='EXPIRED'}" class="card" th:each="activity : ${activities}">
                 <img src="/public/images/daiga-ellaby-Sg_OwwU2Z9o-unsplash.jpg" alt="Avatar" style="width:100%">
                 <a th:href="@{/activity/{id}(id=${activity.getId()})}">
                     <div class="card-container absolute">

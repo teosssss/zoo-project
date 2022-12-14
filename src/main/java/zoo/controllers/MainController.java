@@ -60,6 +60,17 @@ public class MainController {
             model.addAttribute("user", user);
         }
         List<ScheduledActivity> mainScheduledActivities=scheduledActivityRepository.findMainActivities();
+        Date today = new Date();
+
+
+        for (ScheduledActivity scheduledActivity : mainScheduledActivities) {
+            if (scheduledActivity.getDate().before(today)){
+                scheduledActivity.setActivityStatus(ActivityStatus.EXPIRED);
+                activityRegisterService.register(scheduledActivity);
+
+            };
+        }
+
         model.addAttribute("activities",mainScheduledActivities);
         return "index";
     }
@@ -147,10 +158,19 @@ public class MainController {
 
 
     @GetMapping(path = "/schedule")
-    public String scheduleView(Model model){
+    public String scheduleView(Model model,Principal principal){
+        if (principal!=null) {
+            User user = userRepository.findByEmail(principal.getName());
+
+            if (user.getRole() == UserRole.CUSTOMER) {
+                throw new IllegalAccessError();
+            }
+        }
+
         model.addAttribute("activities",activityRepository.findAll());
         return "scheduleActivity";
     }
+
 
 
     @PostMapping(path = "/schedule")
