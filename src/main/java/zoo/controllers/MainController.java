@@ -269,8 +269,17 @@ public class MainController {
     @GetMapping(path="/reservation")
     public String reservationView(Principal principal,Model model){
         User user=userRepository.findByEmail(principal.getName());
-        System.err.println(user);
-        System.err.println(user.getReservations());
+        Date today=new Date();
+
+        for (Reservation reservation : user.getReservations()) {
+            ScheduledActivity scheduledActivity=reservation.getScheduledActivity();
+            if (scheduledActivity.getDate().before(today)){
+                scheduledActivity.setActivityStatus(ActivityStatus.EXPIRED);
+                activityRegisterService.register(scheduledActivity);
+
+            };
+        }
+
         model.addAttribute("reservations",user.getReservations());
 
 
